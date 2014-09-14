@@ -6,6 +6,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 
+import cl.eilers.tatanpoker09.wtm.scoreboard.Team;
+
 @SuppressWarnings("deprecation")
 public class ChatListener implements Listener {
 	@EventHandler
@@ -13,6 +15,8 @@ public class ChatListener implements Listener {
 		event.setCancelled(true);
 		String message = event.getMessage();
 		String playerName = event.getPlayer().getDisplayName();
-		Bukkit.broadcastMessage("<"+playerName+ChatColor.WHITE+"> "+message);
+		Team team = Team.getPlayerTeam(event.getPlayer());
+		System.out.println(team.getTeamColor());
+		Bukkit.broadcastMessage("<"+team.getTeamColor()+ChatColor.stripColor(playerName)+ChatColor.WHITE+"> "+message);
 	}
 }

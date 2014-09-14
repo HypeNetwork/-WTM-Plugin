@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import cl.eilers.tatanpoker09.wtm.Match;
 
 public class Team {
 	private List<Player> playersInTeam = new ArrayList<Player>();
@@ -12,11 +15,13 @@ public class Team {
 	private int maxCapacity;
 	private ChatColor teamColor;
 	private List<Objectives> objectives = new ArrayList<Objectives>();
-	
-	public Team(String name, int maxCapacity, ChatColor color){
+	private Location spawnPoint;
+
+	public Team(String name, int maxCapacity, ChatColor color, Location spawnPoint){
 		this.name = name;
 		this.maxCapacity = maxCapacity;
 		this.teamColor = color;
+		this.spawnPoint = spawnPoint;
 	}
 	
 	public List<Player> getPlayersInTeam(){
@@ -41,7 +46,7 @@ public class Team {
 	}
 	
 	public static Team getPlayerTeam(Player player){
-		for(Team team : ScoreboardMain.getTeamsList()){
+		for(Team team : Match.getTeams()){
 			if(team.getPlayersInTeam().contains(player)){
 				return team;
 			}
@@ -50,7 +55,7 @@ public class Team {
 	}
 
 	public static Team getTeam(String teamName) {
-		for(Team team : ScoreboardMain.getTeamsList()){
+		for(Team team : Match.getTeams()){
 			if(team.getName().equalsIgnoreCase(teamName)){
 				return team;
 			}
@@ -60,6 +65,10 @@ public class Team {
 	
 	public List<Objectives> getObjectives(){
 		return objectives;
+	}
+	
+	public Location getSpawnPoint() {
+		return spawnPoint;
 	}
 }
 

@@ -1,4 +1,4 @@
-name: Water The Monument
+name: WTM
 main: cl.eilers.tatanpoker09.wtm.WaterTheMonument
 version: 0.1
 description: Plugin for the Water The Monument gamemode.
@@ -12,3 +12,5 @@ commands:
   cycle:
   
   join:
+
+  start:
